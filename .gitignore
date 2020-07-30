@@ -1,0 +1,7 @@
+/.idea
+
+/invoice-validation/target
+/invoice-validation/invoice-validation.iml
+
+/invoice-persistence/target
+/invoice-persistence/invoice-persistence.iml
