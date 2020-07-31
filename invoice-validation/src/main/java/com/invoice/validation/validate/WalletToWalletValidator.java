@@ -2,17 +2,33 @@ package com.invoice.validation.validate;
 
 import com.invoice.validation.dto.MessageDto;
 import com.invoice.validation.dto.TransactionDto;
+import com.invoice.validation.enums.TransactionType;
+import java.util.Collection;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WalletToWalletValidator implements Validator {
+public class WalletToWalletValidator implements TransactionValidator {
+
   @Override
-  public boolean shouldValidate(TransactionDto.TransactionType type) {
-    return TransactionDto.TransactionType.WALLET_TO_WALLET.name().equals(type.name());
+  public TransactionType getTransactionType() {
+    return TransactionType.WALLET_TO_WALLET;
+  }
+
+  @Override
+  public boolean shouldValidate(TransactionType type) {
+    return getTransactionType().name().equals(type.name());
   }
 
   @Override
   public MessageDto apply(TransactionDto transactionDto) {
-    return null;
+    TransactionType transactionType = getTransactionType();
+    Collection<String> errorMessages = new TransactionFieldsValidator()
+        .validateDescription(transactionDto.getDescription())
+        .validateAmount(transactionDto.getAmount())
+        .validatePayer(transactionType.getPayer(), transactionDto.getPayerDto())
+        .validatePayee(transactionType.getPayee(), transactionDto.getPayeeDto())
+        .getErrors();
+
+    return new MessageDto(errorMessages.isEmpty(), errorMessages);
   }
 }

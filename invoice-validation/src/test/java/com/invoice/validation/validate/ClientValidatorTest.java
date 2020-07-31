@@ -1,6 +1,7 @@
 package com.invoice.validation.validate;
 
 import com.invoice.validation.dto.TransactionDto;
+import com.invoice.validation.enums.TransactionMember;
 import java.util.Collection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,13 +17,14 @@ public class ClientValidatorTest {
   private static final String VALID_IBAN = "RO22TEST8789898909098749";
   private static final String CNP = "1234567890138";
   private static final String NAME = "ION Ionescu";
+
   @InjectMocks
-  private ClientValidator sut;
+  private TransactionFieldsValidator sut;
 
   @Test
   public void validateClient_ReturnsErrorMessage_IfIBANIsInvalid() {
     TransactionDto.ClientDto clientDto = mockClientDto(INVALID_IBAN);
-    Collection<String> result = sut.validateClient(clientDto);
+    Collection<String> result = sut.validatePayer(TransactionMember.IBAN, clientDto).getErrors();
 
     assertTrue(result.contains(String.format("Client=%s has invalid IBAN=%s", NAME, INVALID_IBAN)));
   }
@@ -30,12 +32,12 @@ public class ClientValidatorTest {
   @Test
   public void validateClient_ReturnsNoError_IfClientHasValidFields() {
     TransactionDto.ClientDto clientDto = mockClientDto(VALID_IBAN);
-    Collection<String> result = sut.validateClient(clientDto);
+    Collection<String> result = sut.validatePayer(TransactionMember.IBAN, clientDto).getErrors();
 
     assertTrue(result.isEmpty());
   }
 
   private TransactionDto.ClientDto mockClientDto(String IBAN) {
-    return new TransactionDto.ClientDto(IBAN, CNP, NAME);
+    return new TransactionDto.ClientDto(IBAN, CNP, 22L, NAME);
   }
 }

@@ -1,6 +1,7 @@
 package com.invoice.validation.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.invoice.validation.enums.TransactionType;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,10 +13,10 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class TransactionDto {
   private @NonNull TransactionType type;
-  private ClientDto payerDto;
-  private @NonNull String description;
-  private @NonNull BigDecimal amount;
-  private ClientDto payeeDto;
+  private @NonNull ClientDto payerDto;
+  private String description;
+  private BigDecimal amount;
+  private @NonNull ClientDto payeeDto;
 
   @Getter
   @NoArgsConstructor
@@ -25,10 +26,8 @@ public class TransactionDto {
     private String IBAN;
     @JsonProperty("CNP")
     private String CNP;
+    private Long walletId;
     private String name;
   }
 
-  public enum TransactionType {
-    IBAN_TO_IBAN, IBAN_TO_WALLET, WALLET_TO_IBAN, WALLET_TO_WALLET;
-  }
 }
