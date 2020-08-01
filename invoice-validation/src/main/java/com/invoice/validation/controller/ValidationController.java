@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/invoice-validation")
+@RequestMapping("/invoice-validation/transactions")
 @AllArgsConstructor
 @CrossOrigin(origins = "*")
 public class ValidationController {
