@@ -1,12 +1,7 @@
 package com.invoice.persistence.controller;
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
+import com.invoice.persistence.service.ReportService;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.pdf.PdfWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import lombok.AllArgsConstructor;
@@ -17,32 +12,26 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/invoice-persistence/report")
+@RequestMapping("/invoice-persistence/report/users/")
 @AllArgsConstructor
 @CrossOrigin(origins = "*")
 public class ReportController {
+  private ReportService reportService;
 
-  @GetMapping
-  public ResponseEntity<InputStreamResource> generateReport() throws DocumentException {
-    Document document = new Document();
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-    PdfWriter.getInstance(document, out);
+  @GetMapping(value = "/{userId}")
+  public ResponseEntity<InputStreamResource> generateReport(@PathVariable String userId) throws DocumentException {
 
-    document.open();
-    Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-    Chunk chunk = new Chunk("Hello World", font);
-
-    document.add(chunk);
-    document.close();
-
+    ByteArrayOutputStream out = reportService.generateUserReport(userId);
     ByteArrayInputStream bis = new ByteArrayInputStream(out.toByteArray());
 
     HttpHeaders headers = new HttpHeaders();
-    headers.setContentDispositionFormData("attachment", "iTextHelloWorld.pdf");
+    headers.setContentDispositionFormData("attachment", "userReport.pdf");
+
     return ResponseEntity
         .ok()
         .cacheControl(CacheControl.noCache())
