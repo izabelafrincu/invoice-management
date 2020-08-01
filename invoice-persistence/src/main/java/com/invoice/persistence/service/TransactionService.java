@@ -5,8 +5,6 @@ import com.invoice.persistence.model.Transaction;
 import com.invoice.persistence.model.User;
 import com.invoice.persistence.repository.TransactionRepository;
 import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +16,7 @@ class TransactionService {
 
   protected Long saveTransaction(TransactionDto request, Long payerId, Long payeeId) {
     Transaction transaction = Transaction.builder()
-        .transactionType(request.getType().name())
+        .transactionType(request.getType())
         .description(request.getDescription())
         .amount(request.getAmount())
         .payer(createUser(payerId))

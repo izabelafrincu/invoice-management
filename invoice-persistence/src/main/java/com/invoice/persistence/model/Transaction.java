@@ -1,5 +1,6 @@
 package com.invoice.persistence.model;
 
+import com.invoice.persistence.enums.TransactionType;
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +30,7 @@ public class Transaction {
 
   private String description;
   private BigDecimal amount;
-  private String transactionType;
+  private TransactionType transactionType;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "payer_id", nullable = false)
