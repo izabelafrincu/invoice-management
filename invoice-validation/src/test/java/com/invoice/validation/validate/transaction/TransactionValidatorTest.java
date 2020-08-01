@@ -1,7 +1,7 @@
 package com.invoice.validation.validate.transaction;
 
-import com.invoice.validation.dto.TransactionDto;
-import com.invoice.validation.enums.TransactionMember;
+import com.invoice.shared.dto.TransactionDto;
+import com.invoice.shared.enums.TransactionMember;
 import java.math.BigDecimal;
 import java.util.UUID;
 import org.junit.Test;

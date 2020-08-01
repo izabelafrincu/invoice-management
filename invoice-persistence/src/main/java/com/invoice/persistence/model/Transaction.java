@@ -1,6 +1,6 @@
 package com.invoice.persistence.model;
 
-import com.invoice.persistence.enums.TransactionType;
+import com.invoice.shared.enums.TransactionType;
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

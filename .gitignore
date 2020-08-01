@@ -5,3 +5,6 @@
 
 /invoice-persistence/target
 /invoice-persistence/invoice-persistence.iml
+
+/invoice-shared/target
+/invoice-shared/invoice-shared.iml

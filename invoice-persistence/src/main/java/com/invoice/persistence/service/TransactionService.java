@@ -1,9 +1,9 @@
 package com.invoice.persistence.service;
 
-import com.invoice.persistence.dto.TransactionDto;
 import com.invoice.persistence.model.Transaction;
 import com.invoice.persistence.model.User;
 import com.invoice.persistence.repository.TransactionRepository;
+import com.invoice.shared.dto.TransactionDto;
 import java.util.Collection;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

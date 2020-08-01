@@ -1,6 +1,6 @@
 package com.invoice.validation.validate.transaction;
 
-import com.invoice.validation.dto.TransactionDto;
+import com.invoice.shared.dto.TransactionDto;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;

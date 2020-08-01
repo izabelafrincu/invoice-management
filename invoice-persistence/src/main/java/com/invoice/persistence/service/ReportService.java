@@ -1,8 +1,8 @@
 package com.invoice.persistence.service;
 
-import com.invoice.persistence.enums.TransactionType;
 import com.invoice.persistence.model.Transaction;
 import com.invoice.persistence.model.User;
+import com.invoice.shared.enums.TransactionType;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;

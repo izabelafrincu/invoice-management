@@ -1,4 +1,4 @@
-package com.invoice.persistence.enums;
+package com.invoice.shared.enums;
 
 public enum TransactionType {
   IBAN_TO_IBAN {

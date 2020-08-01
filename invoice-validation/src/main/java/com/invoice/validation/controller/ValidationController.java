@@ -1,7 +1,7 @@
 package com.invoice.validation.controller;
 
+import com.invoice.shared.dto.TransactionDto;
 import com.invoice.validation.dto.MessageDto;
-import com.invoice.validation.dto.TransactionDto;
 import com.invoice.validation.service.ValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;

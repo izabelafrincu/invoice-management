@@ -1,6 +1,6 @@
-package com.invoice.persistence.dto;
+package com.invoice.shared.dto;
 
-import com.invoice.persistence.enums.TransactionType;
+import com.invoice.shared.enums.TransactionType;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

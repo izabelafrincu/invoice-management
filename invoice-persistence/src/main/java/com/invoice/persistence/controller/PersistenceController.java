@@ -1,7 +1,7 @@
 package com.invoice.persistence.controller;
 
-import com.invoice.persistence.dto.TransactionDto;
 import com.invoice.persistence.service.PersistenceService;
+import com.invoice.shared.dto.TransactionDto;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;

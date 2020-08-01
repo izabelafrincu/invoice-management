@@ -1,13 +1,13 @@
 package com.invoice.persistence.service;
 
-import com.invoice.persistence.dto.TransactionDto;
-import com.invoice.persistence.enums.TransactionMember;
 import com.invoice.persistence.model.User;
 import com.invoice.persistence.repository.UserRepository;
+import com.invoice.shared.dto.TransactionDto;
+import com.invoice.shared.enums.TransactionMember;
 import java.util.UUID;
-import org.springframework.transaction.annotation.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor

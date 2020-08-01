@@ -1,14 +1,14 @@
 package com.invoice.validation.validate;
 
+import com.invoice.shared.dto.TransactionDto;
+import com.invoice.shared.enums.TransactionType;
 import com.invoice.validation.dto.MessageDto;
-import com.invoice.validation.dto.TransactionDto;
-import com.invoice.validation.enums.TransactionType;
 import com.invoice.validation.validate.transaction.TransactionValidator;
 import java.util.Collection;
 import org.springframework.stereotype.Component;
 
 @Component
-public class IbanToWalletValidator implements com.invoice.validation.validate.TransactionValidator {
+public class IbanToWalletValidator implements Validator {
 
   @Override
   public TransactionType getTransactionType() {
