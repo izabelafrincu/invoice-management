@@ -23,7 +23,7 @@ class UserService {
 
   @Transactional
   private User createUser(TransactionMember transactionMember, TransactionDto.ClientDto clientDto) {
-    return userRepository.findByCNP(clientDto.getCNP())
+    return userRepository.findByCNP(clientDto.getCnp())
         .map(existingUser -> updateExistingUser(transactionMember, clientDto, existingUser))
         .orElse(createNewUser(transactionMember, clientDto));
   }
@@ -44,7 +44,7 @@ class UserService {
   }
 
   private User createNewUser(TransactionMember transactionMember, TransactionDto.ClientDto clientDto) {
-    User user = new User(clientDto.getCNP(), clientDto.getName());
+    User user = new User(clientDto.getCnp(), clientDto.getName());
     setAccountId(transactionMember, clientDto, user);
     return user;
   }

@@ -20,7 +20,7 @@ class ClientDetailsValidator {
     }
 
     String clientName = clientDto.getName();
-    Collection<String> result = new ArrayList<>(CnpValidator.getInstance().validateCNP(clientName, clientDto.getCNP()));
+    Collection<String> result = new ArrayList<>(CnpValidator.getInstance().validateCNP(clientName, clientDto.getCnp()));
     if (StringUtils.isEmpty(clientName)) {
       result.add("Client's name is empty");
     }
