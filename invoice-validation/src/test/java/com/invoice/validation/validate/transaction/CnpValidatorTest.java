@@ -74,7 +74,7 @@ public class CnpValidatorTest {
 
   @Test
   public void validateCNP_ReturnsNoError_ifCNPIsValid() {
-    String CNP = "6200408086368";
+    String CNP = "2990817305562";
     Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
 
     assertTrue(result.isEmpty());

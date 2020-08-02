@@ -39,8 +39,7 @@ class CnpValidator {
   }
 
   private boolean checkCnpDigits(String CNP) {
-    int firstDigit = (int) CNP.charAt(0);
-    if (firstDigit < 1) {
+    if (Character.getNumericValue(CNP.charAt(0)) < 1) {
       return false;
     }
 
@@ -58,21 +57,22 @@ class CnpValidator {
       return false;
     }
 
-    return isLastDigitValid(Character.getNumericValue(CNP.charAt(12)), CNP.substring(0, 12));
+    return isLastDigitValid(CNP);
   }
 
-  private boolean isLastDigitValid(int lastDigit, String first12Digits) {
+  private boolean isLastDigitValid(String CNP) {
     int sum = 0;
-    for (int i = 0; i < first12Digits.length(); i++) {
-      int CNPDigit = (int) first12Digits.charAt(i);
-      int codeDigit = (int) CODE.charAt(i);
-      sum += CNPDigit * codeDigit;
+    for (int i = 0; i < CODE.length(); i++) {
+      int codeDigit = Character.getNumericValue(CODE.charAt(i));
+      int CNPDigit = Character.getNumericValue(CNP.charAt(i));
+
+      sum += (CNPDigit * codeDigit);
     }
 
     int rest = sum % 11;
     if (rest == 10) {
       rest = 1;
     }
-    return lastDigit == rest;
+    return Character.getNumericValue(CNP.charAt(12)) == rest;
   }
 }
