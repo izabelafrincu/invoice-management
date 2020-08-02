@@ -11,21 +11,21 @@ public class CnpValidatorTest {
   private CnpValidator sut = CnpValidator.getInstance();
 
   @Test
-  public void validateCNP_returnsErrorMessage_ifCNPIsNull() {
+  public void validateCNP_ReturnsErrorMessage_IfCNPIsNull() {
     Collection<String> result = sut.validateCNP(CLIENT_NAME, null);
 
     assertTrue(result.contains(String.format("Client=%s CNP cannot be null", CLIENT_NAME)));
   }
 
   @Test
-  public void validateCNP_returnsErrorMessage_ifCNPIsEmpty() {
+  public void validateCNP_ReturnsErrorMessage_IfCNPIsEmpty() {
     Collection<String> result = sut.validateCNP(CLIENT_NAME, "    ");
 
     assertTrue(result.contains(String.format("Client=%s CNP is empty", CLIENT_NAME)));
   }
 
   @Test
-  public void validateCNP_returnsErrorMessage_ifCNPHasLessThan13Digits() {
+  public void validateCNP_ReturnsErrorMessage_IfCNPHasLessThan13Digits() {
     String CNP = "33333";
     Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
 
@@ -33,7 +33,7 @@ public class CnpValidatorTest {
   }
 
   @Test
-  public void validateCNP_returnsErrorMessage_ifCNPFirstDigitIsInvalid() {
+  public void validateCNP_ReturnsErrorMessage_IfCNPFirstDigitIsInvalid() {
     String CNP = "0234567890138";
     Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
 
@@ -41,7 +41,7 @@ public class CnpValidatorTest {
   }
 
   @Test
-  public void validateCNP_returnsErrorMessage_ifCNPMonthIsInvalid() {
+  public void validateCNP_ReturnsErrorMessage_IfCNPMonthIsInvalid() {
     String CNP = "2234567890138";
     Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
 
@@ -49,7 +49,7 @@ public class CnpValidatorTest {
   }
 
   @Test
-  public void validateCNP_returnsErrorMessage_ifCNPDayIsInvalid() {
+  public void validateCNP_ReturnsErrorMessage_IfCNPDayIsInvalid() {
     String CNP = "1234567890138";
     Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
 
@@ -57,7 +57,7 @@ public class CnpValidatorTest {
   }
 
   @Test
-  public void validateCNP_returnsErrorMessage_ifCNPCountyIsInvalid() {
+  public void validateCNP_ReturnsErrorMessage_IfCNPCountyIsInvalid() {
     String CNP = "1423567890138";
     Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
 
@@ -65,7 +65,7 @@ public class CnpValidatorTest {
   }
 
   @Test
-  public void validateCNP_returnsErrorMessage_ifCNPControlDigitIsInvalid() {
+  public void validateCNP_ReturnsErrorMessage_IfCNPControlDigitIsInvalid() {
     String CNP = "1234567890138";
     Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
 
@@ -73,7 +73,7 @@ public class CnpValidatorTest {
   }
 
   @Test
-  public void validateCNP_ReturnsNoError_ifCNPIsValid() {
+  public void validateCNP_ReturnsNoError_IfCNPIsValid() {
     String CNP = "2990817305562";
     Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
 

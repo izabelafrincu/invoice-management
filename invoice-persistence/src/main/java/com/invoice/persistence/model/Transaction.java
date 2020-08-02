@@ -32,7 +32,7 @@ public class Transaction {
   private BigDecimal amount;
   private TransactionType transactionType;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "payer_id", nullable = false)
   private User payer;
 

@@ -11,21 +11,21 @@ public class IbanValidatorTest {
   private IbanValidator sut = IbanValidator.getInstance();
 
   @Test
-  public void validateIBAN_returnsErrorMessage_ifIBANIsNull() {
+  public void validateIBAN_ReturnsErrorMessage_IfIBANIsNull() {
     Collection<String> result = sut.validateIBAN(CLIENT_NAME, null);
 
     assertTrue(result.contains(String.format("Client=%s IBAN cannot be null", CLIENT_NAME)));
   }
 
   @Test
-  public void validateIBAN_returnsErrorMessage_ifIBANIsEmpty() {
+  public void validateIBAN_ReturnsErrorMessage_IfIBANIsEmpty() {
     Collection<String> result = sut.validateIBAN(CLIENT_NAME, "    ");
 
     assertTrue(result.contains(String.format("Client=%s IBAN is empty", CLIENT_NAME)));
   }
 
   @Test
-  public void validateIBAN_returnsErrorMessage_ifIBANIsNotUUID() {
+  public void validateIBAN_ReturnsErrorMessage_IfIBANIsNotUUID() {
     String IBAN = "RO12PORL41917181168941";
     Collection<String> result = sut.validateIBAN(CLIENT_NAME, IBAN);
 
@@ -33,7 +33,7 @@ public class IbanValidatorTest {
   }
 
   @Test
-  public void validateIBAN_ReturnsNoError_ifIBANIsValid() {
+  public void validateIBAN_ReturnsNoError_IfIBANIsValid() {
     String IBAN = "RO12PORL4191718116894198";
     Collection<String> result = sut.validateIBAN(CLIENT_NAME, IBAN);
 

@@ -4,6 +4,7 @@
 /invoice-validation/invoice-validation.iml
 
 /invoice-persistence/target
+/invoice-persistence/userReport.pdf
 /invoice-persistence/invoice-persistence.iml
 
 /invoice-shared/target
