@@ -24,6 +24,10 @@ public class ValidationService {
 
   @Retryable(value = {FeignException.class}, backoff = @Backoff(delay = 5000))
   public MessageDto validate(TransactionDto transactionDto) {
+    if (transactionDto == null) {
+      throw new IllegalArgumentException("Transaction cannot be null");
+    }
+
     if (transactionDto.getType() == null) {
       throw new IllegalArgumentException("Transaction type cannot be null");
     }
