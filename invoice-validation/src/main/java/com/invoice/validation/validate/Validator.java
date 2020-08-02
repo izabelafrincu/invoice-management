@@ -5,7 +5,7 @@ import com.invoice.shared.enums.TransactionType;
 import com.invoice.validation.dto.MessageDto;
 import java.util.function.Function;
 
-public interface TransactionValidator extends Function<TransactionDto, MessageDto> {
+public interface Validator extends Function<TransactionDto, MessageDto> {
   TransactionType getTransactionType();
 
   boolean shouldValidate(TransactionType type);

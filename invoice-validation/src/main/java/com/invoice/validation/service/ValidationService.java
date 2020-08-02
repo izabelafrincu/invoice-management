@@ -3,10 +3,10 @@ package com.invoice.validation.service;
 import com.invoice.shared.dto.TransactionDto;
 import com.invoice.validation.dto.MessageDto;
 import com.invoice.validation.persistence.client.InvoicePersistenceClient;
-import com.invoice.validation.validate.TransactionValidator;
+import com.invoice.validation.validate.Validator;
 import feign.FeignException;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.Future;
 import lombok.AllArgsConstructor;
 import org.springframework.retry.annotation.Backoff;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class ValidationService {
-  private List<TransactionValidator> validators;
+  private Collection<Validator> validators;
   private InvoicePersistenceClient invoicePersistenceClient;
 
   @Retryable(value = {FeignException.class}, backoff = @Backoff(delay = 5000))
