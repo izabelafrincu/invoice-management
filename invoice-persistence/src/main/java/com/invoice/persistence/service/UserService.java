@@ -29,9 +29,9 @@ class UserService {
   }
 
   @Transactional
-  protected User findUserByCnp(String CNP) {
-    return userRepository.findByCNP(CNP)
-        .orElseThrow(() -> new IllegalArgumentException(String.format("User with CNP=%s not found", CNP)));
+  protected User findUserByCnp(String cnp) {
+    return userRepository.findByCNP(cnp)
+        .orElseThrow(() -> new IllegalArgumentException(String.format("User with CNP=%s not found", cnp)));
   }
 
   private User updateExistingUser(TransactionMember transactionMember, TransactionDto.ClientDto clientDto,

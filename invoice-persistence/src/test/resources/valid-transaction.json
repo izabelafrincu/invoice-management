@@ -1,15 +1,15 @@
 {
   "amount": 22.40,
-  "description": "Transaction details 2",
-  "payeeDto": {
-    "cnp": "2981103309800",
-    "accountId": "RO16RZBR7255614221739595",
-    "name": "Multescu Marius"
-  },
+  "description": "Transaction details 1",
   "payerDto": {
     "cnp": "2981103217981",
     "accountId": "RO10PORL7736472784284198",
-    "name": "Vasile Doina"
+    "name": "Vasile Marius"
+  },
+  "payeeDto": {
+    "cnp": "2981103309800",
+    "accountId": "RO16RZBR7255614221739595",
+    "name": "Popescu Ana"
   },
   "type": "IBAN_TO_IBAN"
 }

@@ -4,16 +4,21 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
 
-class WalletIdValidator {
+final class WalletIdValidator implements FieldValidator {
+
   private WalletIdValidator() {
+
   }
 
-  public static WalletIdValidator getInstance() {
-    return new WalletIdValidator();
+  private static final WalletIdValidator INSTANCE = new WalletIdValidator();
+
+
+  protected static WalletIdValidator getInstance() {
+    return INSTANCE;
   }
 
-  protected Collection<String> validateWalletId(String clientName, String walletId) {
-    if (walletId == null){
+  public Collection<String> validateField(String clientName, String walletId) {
+    if (walletId == null) {
       return Collections.singletonList(String.format("Client=%s walletId cannot be null", clientName));
     }
 

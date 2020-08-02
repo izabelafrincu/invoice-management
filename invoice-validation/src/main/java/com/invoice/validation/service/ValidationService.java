@@ -3,10 +3,10 @@ package com.invoice.validation.service;
 import com.invoice.shared.dto.TransactionDto;
 import com.invoice.validation.dto.MessageDto;
 import com.invoice.validation.persistence.client.InvoicePersistenceClient;
-import com.invoice.validation.validate.Validator;
+import com.invoice.validation.validate.TransactionValidator;
 import feign.FeignException;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.Future;
 import lombok.AllArgsConstructor;
 import org.springframework.retry.annotation.Backoff;
@@ -19,15 +19,14 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class ValidationService {
-  private List<Validator> validators;
+  private List<TransactionValidator> validators;
   private InvoicePersistenceClient invoicePersistenceClient;
 
-  @Retryable(
-      include = {FeignException.class},
-      maxAttempts = 2,
-      backoff = @Backoff(delay = 5000))
+  @Retryable(value = {FeignException.class}, backoff = @Backoff(delay = 5000))
   public MessageDto validate(TransactionDto transactionDto) {
-    Objects.requireNonNull(transactionDto.getType(), "Transaction type cannot be null");
+    if (transactionDto.getType() == null) {
+      throw new IllegalArgumentException("Transaction type cannot be null");
+    }
 
     MessageDto messageDto = validators
         .stream()
@@ -44,13 +43,14 @@ public class ValidationService {
   }
 
   @Async
-  public Future<Long> sendData(TransactionDto transactionDto) {
+  private Future<Long> sendData(TransactionDto transactionDto) {
     return new AsyncResult<>(invoicePersistenceClient.load(transactionDto));
   }
 
   @Recover
-  public void recover(FeignException e, Long id) {
-    System.out.println("test");
+  public MessageDto recoverValidate(FeignException e, TransactionDto transactionDto) {
+    return new MessageDto(true,
+        Collections.singletonList("Could not save data! Please try again later. " + e.getMessage()));
   }
 
 }

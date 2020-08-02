@@ -12,31 +12,31 @@ public class WalletIdValidatorTest {
   private WalletIdValidator sut = WalletIdValidator.getInstance();
 
   @Test
-  public void validateWalletId_ReturnsErrorMessage_IfWalletIdIsNull() {
-    Collection<String> result = sut.validateWalletId(CLIENT_NAME, null);
+  public void validateField_ReturnsErrorMessage_IfWalletIdIsNull() {
+    Collection<String> result = sut.validateField(CLIENT_NAME, null);
 
     assertTrue(result.contains(String.format("Client=%s walletId cannot be null", CLIENT_NAME)));
   }
 
   @Test
-  public void validateWalletId_ReturnsErrorMessage_IfWalletIdIsEmpty() {
-    Collection<String> result = sut.validateWalletId(CLIENT_NAME, "    ");
+  public void validateField_ReturnsErrorMessage_IfWalletIdIsEmpty() {
+    Collection<String> result = sut.validateField(CLIENT_NAME, "    ");
 
     assertTrue(result.contains(String.format("Client=%s walletId is empty", CLIENT_NAME)));
   }
 
   @Test
-  public void validateWalletId_ReturnsErrorMessage_IfWalletIdIsNotUUID() {
+  public void validateField_ReturnsErrorMessage_IfWalletIdIsNotUUID() {
     String walletId = "5678882-9h";
-    Collection<String> result = sut.validateWalletId(CLIENT_NAME, walletId);
+    Collection<String> result = sut.validateField(CLIENT_NAME, walletId);
 
     assertTrue(result.contains(String.format("Client=%s has invalid walletId=%s", CLIENT_NAME, walletId)));
   }
 
   @Test
-  public void validateWalletId_ReturnsNoError_IfWalletIdIsValid() {
+  public void validateField_ReturnsNoError_IfWalletIdIsValid() {
     String walletId = UUID.randomUUID().toString();
-    Collection<String> result = sut.validateWalletId(CLIENT_NAME, walletId);
+    Collection<String> result = sut.validateField(CLIENT_NAME, walletId);
 
     assertTrue(result.isEmpty());
   }

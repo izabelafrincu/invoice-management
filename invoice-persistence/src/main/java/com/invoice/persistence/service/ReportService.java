@@ -29,8 +29,8 @@ public class ReportService {
   private static final Font DOCUMENT_FONT = FontFactory.getFont(FontFactory.COURIER, 10, BaseColor.BLACK);
 
 
-  public ByteArrayOutputStream generateUserReport(String CNP) throws DocumentException {
-    User payer = userService.findUserByCnp(CNP);
+  public ByteArrayOutputStream generateUserReport(String cnp) throws DocumentException {
+    User payer = userService.findUserByCnp(cnp);
 
     Map<TransactionType, List<Transaction>> transactionByTypes =
         transactionService.findAllUserTransactions(payer.getId())
@@ -38,8 +38,8 @@ public class ReportService {
             .collect(Collectors.groupingBy(Transaction::getTransactionType));
 
     Document document = new Document();
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
-    PdfWriter.getInstance(document, out);
+    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    PdfWriter.getInstance(document, bos);
 
     document.open();
     document.addTitle("Transactions Report");
@@ -47,7 +47,7 @@ public class ReportService {
     addTransactionDetails(transactionByTypes, document);
     document.close();
 
-    return out;
+    return bos;
   }
 
   private void addPayerDetails(User payer, Document document) throws DocumentException {

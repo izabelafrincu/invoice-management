@@ -11,71 +11,71 @@ public class CnpValidatorTest {
   private CnpValidator sut = CnpValidator.getInstance();
 
   @Test
-  public void validateCNP_ReturnsErrorMessage_IfCNPIsNull() {
-    Collection<String> result = sut.validateCNP(CLIENT_NAME, null);
+  public void validateField_ReturnsErrorMessage_IfCNPIsNull() {
+    Collection<String> result = sut.validateField(CLIENT_NAME, null);
 
     assertTrue(result.contains(String.format("Client=%s CNP cannot be null", CLIENT_NAME)));
   }
 
   @Test
-  public void validateCNP_ReturnsErrorMessage_IfCNPIsEmpty() {
-    Collection<String> result = sut.validateCNP(CLIENT_NAME, "    ");
+  public void validateField_ReturnsErrorMessage_IfCNPIsEmpty() {
+    Collection<String> result = sut.validateField(CLIENT_NAME, "    ");
 
     assertTrue(result.contains(String.format("Client=%s CNP is empty", CLIENT_NAME)));
   }
 
   @Test
-  public void validateCNP_ReturnsErrorMessage_IfCNPHasLessThan13Digits() {
+  public void validateField_ReturnsErrorMessage_IfCNPHasLessThan13Digits() {
     String CNP = "33333";
-    Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
+    Collection<String> result = sut.validateField(CLIENT_NAME, CNP);
 
     assertTrue(result.contains(String.format("Client=%s CNP=%s has less than 13 digits", CLIENT_NAME, CNP)));
   }
 
   @Test
-  public void validateCNP_ReturnsErrorMessage_IfCNPFirstDigitIsInvalid() {
+  public void validateField_ReturnsErrorMessage_IfCNPFirstDigitIsInvalid() {
     String CNP = "0234567890138";
-    Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
+    Collection<String> result = sut.validateField(CLIENT_NAME, CNP);
 
     assertTrue(result.contains(String.format("Client=%s has invalid CNP=%s", CLIENT_NAME, CNP)));
   }
 
   @Test
-  public void validateCNP_ReturnsErrorMessage_IfCNPMonthIsInvalid() {
+  public void validateField_ReturnsErrorMessage_IfCNPMonthIsInvalid() {
     String CNP = "2234567890138";
-    Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
+    Collection<String> result = sut.validateField(CLIENT_NAME, CNP);
 
     assertTrue(result.contains(String.format("Client=%s has invalid CNP=%s", CLIENT_NAME, CNP)));
   }
 
   @Test
-  public void validateCNP_ReturnsErrorMessage_IfCNPDayIsInvalid() {
+  public void validateField_ReturnsErrorMessage_IfCNPDayIsInvalid() {
     String CNP = "1234567890138";
-    Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
+    Collection<String> result = sut.validateField(CLIENT_NAME, CNP);
 
     assertTrue(result.contains(String.format("Client=%s has invalid CNP=%s", CLIENT_NAME, CNP)));
   }
 
   @Test
-  public void validateCNP_ReturnsErrorMessage_IfCNPCountyIsInvalid() {
+  public void validateField_ReturnsErrorMessage_IfCNPCountyIsInvalid() {
     String CNP = "1423567890138";
-    Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
+    Collection<String> result = sut.validateField(CLIENT_NAME, CNP);
 
     assertTrue(result.contains(String.format("Client=%s has invalid CNP=%s", CLIENT_NAME, CNP)));
   }
 
   @Test
-  public void validateCNP_ReturnsErrorMessage_IfCNPControlDigitIsInvalid() {
+  public void validateField_ReturnsErrorMessage_IfCNPControlDigitIsInvalid() {
     String CNP = "1234567890138";
-    Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
+    Collection<String> result = sut.validateField(CLIENT_NAME, CNP);
 
     assertTrue(result.contains(String.format("Client=%s has invalid CNP=%s", CLIENT_NAME, CNP)));
   }
 
   @Test
-  public void validateCNP_ReturnsNoError_IfCNPIsValid() {
+  public void validateField_ReturnsNoError_IfCNPIsValid() {
     String CNP = "2990817305562";
-    Collection<String> result = sut.validateCNP(CLIENT_NAME, CNP);
+    Collection<String> result = sut.validateField(CLIENT_NAME, CNP);
 
     assertTrue(result.isEmpty());
   }

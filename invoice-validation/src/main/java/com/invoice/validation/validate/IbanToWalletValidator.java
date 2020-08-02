@@ -3,12 +3,11 @@ package com.invoice.validation.validate;
 import com.invoice.shared.dto.TransactionDto;
 import com.invoice.shared.enums.TransactionType;
 import com.invoice.validation.dto.MessageDto;
-import com.invoice.validation.validate.transaction.TransactionValidator;
 import java.util.Collection;
 import org.springframework.stereotype.Component;
 
 @Component
-public class IbanToWalletValidator implements Validator {
+public class IbanToWalletValidator implements TransactionValidator {
 
   @Override
   public TransactionType getTransactionType() {
@@ -23,7 +22,7 @@ public class IbanToWalletValidator implements Validator {
   @Override
   public MessageDto apply(TransactionDto transactionDto) {
     TransactionType transactionType = getTransactionType();
-    Collection<String> errorMessages = new TransactionValidator()
+    Collection<String> errorMessages = new com.invoice.validation.validate.transaction.TransactionValidator()
         .validateDescription(transactionDto.getDescription())
         .validateAmount(transactionDto.getAmount())
         .validatePayer(transactionType.getPayer(), transactionDto.getPayerDto())

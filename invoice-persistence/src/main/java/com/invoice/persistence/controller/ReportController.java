@@ -10,7 +10,6 @@ import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,15 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/invoice-persistence/report/users/")
 @AllArgsConstructor
-@CrossOrigin(origins = "*")
 public class ReportController {
   private ReportService reportService;
 
   @GetMapping(value = "/{userId}")
   public ResponseEntity<InputStreamResource> generateReport(@PathVariable String userId) throws DocumentException {
 
-    ByteArrayOutputStream out = reportService.generateUserReport(userId);
-    ByteArrayInputStream bis = new ByteArrayInputStream(out.toByteArray());
+    ByteArrayOutputStream bos = reportService.generateUserReport(userId);
+    ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
 
     HttpHeaders headers = new HttpHeaders();
     headers.setContentDispositionFormData("attachment", "userReport.pdf");

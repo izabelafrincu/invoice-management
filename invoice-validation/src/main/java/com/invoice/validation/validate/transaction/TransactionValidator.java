@@ -49,10 +49,10 @@ public class TransactionValidator {
     String accountId = clientDto.getAccountId();
     switch (transactionMember) {
       case WALLET:
-        result.addAll(WalletIdValidator.getInstance().validateWalletId(name, accountId));
+        result.addAll(WalletIdValidator.getInstance().validateField(name, accountId));
         break;
       default:
-        result.addAll(IbanValidator.getInstance().validateIBAN(name, accountId));
+        result.addAll(IbanValidator.getInstance().validateField(name, accountId));
         break;
     }
 

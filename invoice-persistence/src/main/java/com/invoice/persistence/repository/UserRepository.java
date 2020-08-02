@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
-  Optional<User> findByCNP(String CNP);
+  Optional<User> findByCNP(String cnp);
 }
